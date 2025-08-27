@@ -8,16 +8,16 @@ class Ticket(models.Model):
 
 
     class Priority(models.TextChoices):
-        LOW = 'Baixa',
-        MEDIUM = 'Média',
-        HIGH = 'ALta'
+        BAIXA = 'Baixa',
+        MEDIA = 'Média',
+        ALTA = 'Alta'
 
 
     class Status(models.TextChoices):
-        OPEN = 'Aberto',
-        IN_PROGRESS = 'Em Atendimento',
-        RESOLVED = 'Resolvido',
-        CANCELLED = 'Cancelado',
+        ABERTO = 'Aberto',
+        PROGRESSO = 'Em Atendimento',
+        RESOLVIDO = 'Resolvido',
+        CANCELADO = 'Cancelado',
 
     title = models.CharField(max_length=128)
     description = models.TextField(max_length=521, null=True, blank=True)

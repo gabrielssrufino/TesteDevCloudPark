@@ -6,5 +6,5 @@ urlpatterns = [
 
     path('api/', include('tickets.urls')),
     path('api/', include('authentication.urls')),
-    path('api/', include('users.urls')),
+    path('api/', include('accounts.urls')),
 ]
