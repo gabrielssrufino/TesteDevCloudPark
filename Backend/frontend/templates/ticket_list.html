@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+{% block title %}Chamados - CloudPark{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h1>Lista de Chamados</h1>
+    <a href="{% url 'ticket-create' %}" class="btn btn-success">Novo Chamado</a>
+</div>
+
+<div class="card shadow-sm">
+    <div class="card-body p-0">
+        <div class="table-responsive">
+            <table class="table table-hover mb-0">
+                <thead class="table-dark">
+                    <tr>
+                        <th>ID</th>
+                        <th>Título</th>
+                        <th>Prioridade</th>
+                        <th>Status</th>
+                        <th>Setor</th>
+                        <th>Criado Por</th>
+                        <th>Atribuído a</th>
+                        <th>Criado em</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for ticket in object_list %}
+                    <tr>
+                        <td><span class="badge bg-secondary">#{{ ticket.pk }}</span></td>
+                        <td class="fw-medium">{{ ticket.title }}</td>
+                        <td>
+                            {% if ticket.priority == 'alta' %}
+                                <span class="badge bg-danger">{{ ticket.priority|title }}</span>
+                            {% elif ticket.priority == 'media' %}
+                                <span class="badge bg-warning">{{ ticket.priority|title }}</span>
+                            {% else %}
+                                <span class="badge bg-info">{{ ticket.priority|title }}</span>
+                            {% endif %}
+                        </td>
+                        <td>
+                            {% if ticket.status == 'aberto' %}
+                                <span class="badge bg-primary">{{ ticket.status|title }}</span>
+                            {% elif ticket.status == 'em_andamento' %}
+                                <span class="badge bg-warning">Em Andamento</span>
+                            {% elif ticket.status == 'resolvido' %}
+                                <span class="badge bg-success">{{ ticket.status|title }}</span>
+                            {% else %}
+                                <span class="badge bg-secondary">{{ ticket.status|title }}</span>
+                            {% endif %}
+                        </td>
+                        <td>{{ ticket.sector|default:"-" }}</td>
+                        <td>{{ ticket.created_by.username }}</td>
+                        <td>{{ ticket.assigned_to.username|default:"-" }}</td>
+                        <td class="text-muted small">{{ ticket.created_at|date:"d/m/Y H:i" }}</td>
+                        <td>
+                            <a href="{% url 'ticket-update' ticket.pk %}" class="btn btn-sm btn-outline-primary">Editar</a>
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="9" class="text-center text-muted py-4">
+                            Nenhum chamado encontrado.
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

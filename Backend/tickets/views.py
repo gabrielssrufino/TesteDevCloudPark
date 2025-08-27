@@ -1,9 +1,12 @@
+from django.urls import reverse_lazy
+from django.views.generic import ListView, UpdateView, CreateView
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth import get_user_model
 from rest_framework import generics, filters
 from rest_framework import status as http_status
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from . import models, serializers
+from . import models, serializers, forms
 
 
 User = get_user_model()
@@ -59,3 +62,27 @@ class TicketUpdateView(APIView):
             return Response(serializer.data, status=http_status.HTTP_200_OK)
 
         return Response(serializer.errors, status=http_status.HTTP_400_BAD_REQUEST)
+
+
+class TicketListView(LoginRequiredMixin, ListView):
+    model = models.Ticket
+    template_name = 'ticket_list.html'
+    context_object_name = 'tickets'
+
+
+class TicketCreateView(LoginRequiredMixin, CreateView):
+    model = models.Ticket
+    form_class = forms.TicketForm
+    template_name = 'ticket_form.html'
+    success_url = reverse_lazy('ticket-list')
+
+    def form_valid(self, form):
+        form.instance.created_by = self.request.user
+        return super().form_valid(form)
+
+
+class TicketUpdateView(LoginRequiredMixin, UpdateView):
+    model = models.Ticket
+    form_class = forms.TicketForm
+    template_name = 'ticket_form.html'
+    success_url = reverse_lazy('ticket-list')

@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     'authentication',
     'accounts',
     'tickets',
+    'frontend'
 ]
 
 MIDDLEWARE = [
@@ -55,7 +56,7 @@ ROOT_URLCONF = 'core.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'frontend/templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -69,6 +70,8 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'core.wsgi.application'
 
+LOGIN_REDIRECT_URL = '/home/'  # redireciona após login
+LOGOUT_REDIRECT_URL = '/login/'  # redireciona após logout
 
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
