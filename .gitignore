@@ -1,0 +1,9 @@
+# IDE
+
+.idea/
+
+# Backend
+
+Backend/.venv
+Backend/*.sqlite3
+__pycache__/
