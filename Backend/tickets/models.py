@@ -21,7 +21,7 @@ class Ticket(models.Model):
 
     title = models.CharField(max_length=128)
     description = models.TextField(max_length=521, null=True, blank=True)
-    prioritt = models.CharField(max_length=10, choices=Priority.choices)
+    priority = models.CharField(max_length=10, choices=Priority.choices)
     sector = models.CharField(max_length=120, blank=True)
     status = models.CharField(max_length=20, choices=Status.choices)
     created_by = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user_tickets')
