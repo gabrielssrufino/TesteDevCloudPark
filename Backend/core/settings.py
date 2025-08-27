@@ -31,7 +31,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'drf_yasg',
 
-    'accounts'
+    'accounts',
     'tickets',
 ]
 
