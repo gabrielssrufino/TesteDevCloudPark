@@ -1,6 +1,5 @@
 from datetime import timedelta
 from pathlib import Path
-from .permissions import GlobalDefaultPermission
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -137,7 +136,7 @@ REST_FRAMEWORK = {
     ),
     'DEFAULT_PERMISSION_CLASSES': (
         'rest_framework.permissions.IsAuthenticated',
-        GlobalDefaultPermission
+        'core.permissions.GlobalDefaultPermission',
     ),
 }
 
