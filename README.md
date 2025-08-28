@@ -88,9 +88,26 @@ O objetivo é permitir a abertura, listagem e gerenciamento de chamados internos
 
 > Estrutura resumida para facilitar visualização; pastas incluem modelos, views, serializers e templates.
 
+## Rotas Importantes
+
+- **Admin Django** – Painel administrativo  
+  http://localhost:8000/admin/
+
+- **Login Atendente (Django Template)** – Interface web para atendentes  
+  http://localhost:8000/login/
+
+- **Login Técnico (Vue 3 SPA)** – Interface para técnicos  
+  http://localhost:5173/login/
+
 ---
 
 ## Instalação e Setup
+
+### Clone esse repisitório
+
+```
+git clone https://github.com/gabrielssrufino/TesteDevCloudPark.git
+```
 
 ## Rodando com Docker
 
@@ -180,3 +197,7 @@ Este projeto demonstra:
 * Consumo de API via **Vue 3 SPA**
 * Controle de acesso e regras de negócio
 * Organização de projeto fullstack com documentação clara
+
+
+
+
