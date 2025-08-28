@@ -19,7 +19,7 @@ class UserLoginView(LoginView):
         if user and user.groups.filter(name='Tecnico').exists():
             messages.error(
                 self.request,
-                'Acesso negado! Técnicos devem acessar o <a href="https://example.com" class="alert-link">Portal para Técnicos</a>.',
+                'Acesso negado! Técnicos devem acessar o <a href="http://localhost:5173/" class="alert-link">Portal para Técnicos</a>.',
                 extra_tags='safe'
             )
             return self.form_invalid(form)
