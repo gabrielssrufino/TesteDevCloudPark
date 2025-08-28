@@ -6,18 +6,16 @@ User = get_user_model()
 
 class Ticket(models.Model):
 
+    class Status(models.TextChoices):
+        ABERTO = 'Aberto'
+        PROGRESSO = 'Em Atendimento'
+        RESOLVIDO = 'Resolvido'
+        CANCELADO = 'Cancelado'
 
     class Priority(models.TextChoices):
-        BAIXA = 'Baixa',
-        MEDIA = 'Média',
+        BAIXA = 'Baixa'
+        MEDIA = 'Média'
         ALTA = 'Alta'
-
-
-    class Status(models.TextChoices):
-        ABERTO = 'Aberto',
-        PROGRESSO = 'Em Atendimento',
-        RESOLVIDO = 'Resolvido',
-        CANCELADO = 'Cancelado',
 
     title = models.CharField(max_length=128)
     description = models.TextField(max_length=521, null=True, blank=True)

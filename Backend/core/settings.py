@@ -50,6 +50,10 @@ MIDDLEWARE = [
 
 CORS_ORIGIN_ALLOW_ALL = True # apenas para ser mais simples por estar em dev
 
+CSRF_TRUSTED_ORIGINS = [
+    "http://localhost:5173",
+]
+
 
 ROOT_URLCONF = 'core.urls'
 

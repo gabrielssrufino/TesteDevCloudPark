@@ -12,7 +12,7 @@ from . import models, serializers, forms
 User = get_user_model()
 
 
-class TicketListView(generics.ListCreateAPIView):
+class TicketCreateListView(generics.ListCreateAPIView):
 
     queryset = models.Ticket.objects.all()
     serializer_class = serializers.TicketSerializer
@@ -35,7 +35,7 @@ class TicketDetailView(generics.RetrieveDestroyAPIView):
     serializer_class = serializers.TicketSerializer
 
 
-class TicketUpdateView(APIView):
+class TicketUpdateAPIView(APIView):
 
     model_class = models.Ticket
 
@@ -55,7 +55,7 @@ class TicketUpdateView(APIView):
                     {"detail": "Não autorizado. Apenas técnicos podem resolver chamados."},
                     status=http_status.HTTP_403_FORBIDDEN
                 )
-
+        print("PATCH data:", data)
         serializer = serializers.TicketSerializer(ticket, data=data, partial=True)
         if serializer.is_valid():
             serializer.save(updated_by=user)
