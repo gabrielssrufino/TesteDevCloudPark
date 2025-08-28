@@ -1,0 +1,24 @@
+services:
+  backend:
+    build: ./Backend
+    container_name: cloudpark_backend
+    volumes:
+      - ./Backend:/app
+    ports:
+      - "8000:8000"
+    environment:
+      - DEBUG=1
+    command: >
+      sh -c "python manage.py migrate &&
+             python manage.py mock_data &&
+             python manage.py runserver 0.0.0.0:8000"
+  
+  frontend:
+    build: ./vue_frontend
+    container_name: cloudpark_frontend
+    volumes:
+      - ./vue_frontend:/app
+    ports:
+      - "5173:5173"
+    depends_on:
+      - backend
