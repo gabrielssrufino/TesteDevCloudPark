@@ -1,5 +1,6 @@
 from datetime import timedelta
 from pathlib import Path
+from .permissions import GlobalDefaultPermission
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -68,10 +69,11 @@ TEMPLATES = [
     },
 ]
 
+LOGIN_REDIRECT_URL = '/home/'
+LOGOUT_REDIRECT_URL = '/login/'
+
 WSGI_APPLICATION = 'core.wsgi.application'
 
-LOGIN_REDIRECT_URL = '/home/'  # redireciona após login
-LOGOUT_REDIRECT_URL = '/login/'  # redireciona após logout
 
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
@@ -133,9 +135,10 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ),
-    # 'DEFAULT_PERMISSION_CLASSES': (
-    #     'rest_framework.permissions.IsAuthenticated',
-    # ),
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+        GlobalDefaultPermission
+    ),
 }
 
 SIMPLE_JWT = {
