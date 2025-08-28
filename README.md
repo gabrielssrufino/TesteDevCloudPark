@@ -74,8 +74,19 @@ O objetivo é permitir a abertura, listagem e gerenciamento de chamados internos
 ## Estrutura do Projeto
 
 ```text
-<estrutura do projeto como antes>
+├── Backend
+│   ├── accounts/
+│   ├── authentication/
+│   ├── core/
+│   ├── db.sqlite3
+│   ├── frontend/
+│   ├── manage.py
+│   └── tickets/
+├── README.md
+└── vue_frontend/
 ```
+
+> Estrutura resumida para facilitar visualização; pastas incluem modelos, views, serializers e templates.
 
 ---
 
